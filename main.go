@@ -22,8 +22,30 @@ func main() {
 				"message": "pong",
 			})
 		})
+
+		// /jokes - will retrieve a list of jokes a user can see
+		api.GET("/jokes", JokeHandler)
+
+		// /joke/like/:jokeID - will capture likes sent to a particular joke
+		api.POST("/jokes/like/:jokeID", LikeJoke)
 	}
 
 	// Start and run the server
 	router.Run(":3000")
+}
+
+// JokeHandler retrieves a list of available jokes
+func JokeHandler(c *gin.Context) {
+	c.Header("Content-Type", "application/json")
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Jokes handler not implemented yet",
+	})
+}
+
+// Like Joke increments the likes of a particular joke Item
+func LikeJoke(c *gin.Context) {
+	c.Header("Content-Type", "application/json")
+	c.JSON(http.StatusOK, gin.H{
+		"message": "LikeJoke not implemented yet",
+	})
 }
