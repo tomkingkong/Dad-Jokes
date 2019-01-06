@@ -4,12 +4,26 @@ class Joke extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      liked: ""
+      liked: "",
+      jokes: []
     }
   }
 
   like = () => {
-    //TODO
+    let joke = this.props.joke;
+    this.serverRequest(joke);
+  }
+
+  serverRequest = joke => {
+    $.post(
+      "http://localhost:3000/api/jokes/like/" + joke.id,
+      { like: 1 },
+      res => {
+        console.log("res...", res);
+        this.setState({ liked: "Liked!", jokes: res });
+        this.props.jokes = res;
+      }
+    );
   }
 
   render() {
@@ -18,7 +32,7 @@ class Joke extends React.Component {
         <div className="panel panel-default">
 
           <div className="panel-heading">
-            #{this.props.joke.id} 
+            #{this.props.joke.id}{" "}
             <span className="pull-right">
               {this.state.liked}
             </span>
