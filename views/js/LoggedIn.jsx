@@ -2,11 +2,30 @@
 // import Joke from './Joke';
 
 class LoggedIn extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       jokes: []
     }
+  }
+
+  logout = () => {
+    localStorage.removeItem("id_token");
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("profile");
+    location.reload();
+  }
+
+  serverRequest = () => {
+    $.get("http://localhost:3000/api/jokes", res => {
+      this.setState({
+        jokes: res
+      });
+    });
+  }
+
+  componentDidMount() {
+    this.serverRequest();
   }
 
   render() {
