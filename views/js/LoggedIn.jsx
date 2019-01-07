@@ -1,6 +1,3 @@
-// import React, { Component } from 'react';
-// import Joke from './Joke';
-
 class LoggedIn extends React.Component {
   constructor() {
     super();
