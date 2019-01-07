@@ -1,5 +1,3 @@
-// import React, { Component } from 'react';
-
 class Joke extends React.Component { 
   constructor(props) {
     super(props);
